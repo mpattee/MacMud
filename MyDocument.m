@@ -273,7 +273,8 @@
 
 // TODO: redo ansi coloring
 	NSArray *matches = [string componentsMatchedByRegex:ANSIAttribute];
-	NSLog(@"array: %@", matches);
+	NSArray *matchComponents = [string arrayOfCaptureComponentsMatchedByRegex:ANSIAttribute];
+//	NSLog(@"array: %@", matches);
 //	regExObj = [[OFRegularExpression alloc] initWithString:ANSIAttribute];
 //	match = [regExObj matchInString:string];
 	if (matches) {
@@ -291,7 +292,7 @@
 		if ([targetMatches count]) 
 			{
 			NSArray *targets = [[targetMatches objectAtIndex:0] componentsSeparatedByString:@", "];
-			NSLog(@"targets: %@", targets);
+//			NSLog(@"targets: %@", targets);
 			for (NSString *target in targets) 
 				{
 				if ([target rangeOfString:@"0;35m"].location != NSNotFound) 
@@ -301,62 +302,33 @@
 					}
 				}
 			}
-//			NSString *alsoHere2 = [NSString stringWithFormat:@"Also here: (.+)\\."];
-//			OFRegularExpression *regExObj22 = [[OFRegularExpression alloc] initWithString:alsoHere2];
-//			OFRegularExpressionMatch *match = [regExObj22 matchInString:[attributedString string]];
-//			//		NSLog(@"MATCH: %@", match);
-//			if (match) {
-//				//			NSLog(@"COUNT: %d", [regExObj2 subexpressionCount]);
-//				NSString *targetList = [match subexpressionAtIndex:0];
-//				NSArray *targets = [targetList componentsSeparatedByString:@", "];
-//				//			NSLog(@"TARGETS: %@", targets);
 //				// 0;35m == attackable magenta
 //				// 0;36m == neutral cyan
 //				// 0;37m == good alligned white
-//				//			for (NSString *target in targets) {
-//				//				if (islower([target characterAtIndex:0])) {
-//				//					[self attackTarget:target];
-//				//					break;
-//				//				}
-//				//			}
-//			}
 		
 		
+		for (NSArray *match in matchComponents) 
+			{
+			NSRange range = [[attributedString string] rangeOfString:[match objectAtIndex:0]];
+			NSRange colorRange = range;
+			colorRange.length = [attributedString length] - range.location;
+			NSString *parsedCode = [match objectAtIndex:2];
+			if ([parsedCode length]) 
+				{
+				[self attributedString:attributedString withCode:[[match objectAtIndex:2] integerValue] forRange:colorRange];
+				}
+			[attributedString deleteCharactersInRange:range];
+			}
+	
+		[outputTextView insertText:attributedString];
+
+		self.lastInput = [attributedString string];
+
+		NSDictionary *inputDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:attributedString, rawString, nil] forKeys:[NSArray arrayWithObjects:@"attributedString", @"rawString", nil]];
+		[self performSelectorInBackground:@selector(respondInBackgroundToInput:) withObject:inputDictionary];
 		
-		
-		
-//			OFRegularExpression *regExObj = [[OFRegularExpression alloc] initWithString:ANSIAttribute];
-//			match = [regExObj matchInString:string];
-		NSLog(@"bleh: %@",attributedString);
-//		NSRange range = [match matchRange];
-//		while (match) {
-//			range = [match matchRange];
-//			range.length = [attributedString length] - range.location;
-//			for (int i = 0; i < 3; i++) {
-//				NSString * parsedCode = [match subexpressionAtIndex:i];
-//				if (![parsedCode isEqualToString:@""] ) {
-//					[self attributedString:attributedString withCode:[parsedCode integerValue] forRange:range];
-//				}
-//			}
-//			match = [match nextMatch];
-//		}
-//		
-//		match = [regExObj matchInString:[attributedString string]];
-//		while (match) {
-//			[attributedString deleteCharactersInRange:[match matchRange]];
-//			match = [regExObj matchInString:[attributedString string]];
-//		}
-//
-//		[outputTextView insertText:attributedString];
-//		
-//		self.lastInput = [attributedString string];
-//		[regExObj release];
-//		
-//		NSDictionary *inputDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:attributedString, rawString, nil] forKeys:[NSArray arrayWithObjects:@"attributedString", @"rawString", nil]];
-//		[self performSelectorInBackground:@selector(respondInBackgroundToInput:) withObject:inputDictionary];
-//		
-//	} else {
-//		self.lastInput = string;
+	} else {
+		self.lastInput = string;
 		[outputTextView insertText:string];		
 	}	
 	
@@ -450,14 +422,17 @@
 ////		[self performSelectorOnMainThread:@selector(checkForTargets:) withObject:nil waitUntilDone:NO];
 //	}
 //
+	NSArray *experienceMatches = [[attributedString string]  arrayOfCaptureComponentsMatchedByRegex:@"You gain (\\d*) experience."];
+	
 //	NSString *gainExperience = [NSString stringWithFormat:@"You gain (\\d*) experience."];
 //	OFRegularExpression *experienceReg = [[OFRegularExpression alloc] initWithString:gainExperience];
 //	match = [experienceReg matchInString:[attributedString string]];
-//	if (match) {
-//		isInCombat = NO;
+	if ([experienceMatches count]) {
+		isInCombat = NO;
+		NSLog(@"experience matches: %@", experienceMatches);
 //		totalExperienceGained = totalExperienceGained + [[match subexpressionAtIndex:0] integerValue];
 //		[experienceLabel setStringValue:[NSString stringWithFormat:@"Experience Gained: %d", totalExperienceGained]];
-//	}
+	}
 //	
 //	[regExObj release];
 //	NSString * usernamePrompt = @"Enter your User-ID:";

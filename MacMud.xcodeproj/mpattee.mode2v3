@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5C68C9AC12E7D5950037A095</string>
+						<string>5C68CB7512E8E2430037A095</string>
 						<key>history</key>
 						<array>
 							<string>5C68C91F12E7C44E0037A095</string>
@@ -237,46 +237,6 @@
 				<false/>
 				<key>RubberWindowFrame</key>
 				<string>699 147 1360 1271 0 0 2560 1418 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>5C68C92212E7C44E0037A095</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>main.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>5C68C92312E7C44E0037A095</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>main.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>5C68C9AD12E7D5950037A095</string>
-						<key>history</key>
-						<array>
-							<string>5C68C92412E7C44E0037A095</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1360, 1230}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 147 1360 1271 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 	</array>
@@ -312,6 +272,8 @@
 					<key>Tabs</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -352,6 +314,7 @@
 										<string>2A37F4C3FDCFA73011CA2CEA</string>
 										<string>1058C7A6FEA54F5311CA2CBB</string>
 										<string>1058C7A8FEA54F5311CA2CBB</string>
+										<string>19C28FB0FE9D524F11CA2CBB</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
@@ -385,13 +348,13 @@
 									<string>WarningsColumn</string>
 									<real>43</real>
 								</array>
+								<key>RubberWindowFrame</key>
+								<string>2042 998 350 420 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -432,10 +395,8 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>5</integer>
-											<integer>2</integer>
-											<integer>1</integer>
-											<integer>0</integer>
+											<integer>15</integer>
+											<integer>14</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -457,8 +418,6 @@
 									<string>MainColumn</string>
 									<real>311</real>
 								</array>
-								<key>RubberWindowFrame</key>
-								<string>2042 998 350 420 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -578,12 +537,11 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5C68C9AE12E7D5950037A095</string>
+		<string>5C68CB7612E8E2430037A095</string>
 		<string>5C68C92812E7C44E0037A095</string>
 		<string>5C68C92912E7C44E0037A095</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>5C68C92212E7C44E0037A095</string>
 		<string>/Users/mpattee/Documents/source/MacMud/MacMud.xcodeproj</string>
 		<string>5CD9515B1009129800BE590D</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
