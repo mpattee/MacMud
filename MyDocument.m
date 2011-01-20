@@ -424,16 +424,12 @@
 //
 	NSArray *experienceMatches = [[attributedString string]  arrayOfCaptureComponentsMatchedByRegex:@"You gain (\\d*) experience."];
 	
-//	NSString *gainExperience = [NSString stringWithFormat:@"You gain (\\d*) experience."];
-//	OFRegularExpression *experienceReg = [[OFRegularExpression alloc] initWithString:gainExperience];
-//	match = [experienceReg matchInString:[attributedString string]];
-	if ([experienceMatches count]) {
+	if ([experienceMatches count]) 
+		{
 		isInCombat = NO;
-		NSLog(@"experience matches: %@", experienceMatches);
-//		totalExperienceGained = totalExperienceGained + [[match subexpressionAtIndex:0] integerValue];
-//		[experienceLabel setStringValue:[NSString stringWithFormat:@"Experience Gained: %d", totalExperienceGained]];
-	}
-//	
+		totalExperienceGained = totalExperienceGained + [[[experienceMatches lastObject] lastObject] integerValue];
+		[experienceLabel setStringValue:[NSString stringWithFormat:@"Experience Gained: %d", totalExperienceGained]];
+		}
 //	[regExObj release];
 //	NSString * usernamePrompt = @"Enter your User-ID:";
 //	regExObj = [[OFRegularExpression alloc] initWithString:usernamePrompt];

@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5C68CB7512E8E2430037A095</string>
+						<string>5C68CB8612E8E7940037A095</string>
 						<key>history</key>
 						<array>
 							<string>5C68C91F12E7C44E0037A095</string>
@@ -236,7 +236,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>699 147 1360 1271 0 0 2560 1418 </string>
+				<string>541 147 1360 1271 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 	</array>
@@ -537,14 +537,14 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5C68CB7612E8E2430037A095</string>
+		<string>5C68CB8112E8E6D50037A095</string>
 		<string>5C68C92812E7C44E0037A095</string>
 		<string>5C68C92912E7C44E0037A095</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>/Users/mpattee/Documents/source/MacMud/MacMud.xcodeproj</string>
-		<string>5CD9515B1009129800BE590D</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>5CD9515B1009129800BE590D</string>
 	</array>
 	<key>WindowString</key>
 	<string>2042 998 350 420 0 0 2560 1418 </string>
@@ -1022,7 +1022,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {643, 362}}</string>
 								<key>RubberWindowFrame</key>
-								<string>1758 317 643 403 0 0 2560 1418 </string>
+								<string>1906 448 643 403 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -1051,7 +1051,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>1758 317 643 403 0 0 2560 1418 </string>
+			<string>1906 448 643 403 0 0 2560 1418 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D5B069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
