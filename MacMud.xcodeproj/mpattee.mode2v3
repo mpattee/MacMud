@@ -216,11 +216,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5C68CB8612E8E7940037A095</string>
+						<string>5C68CBAA12E8EDF50037A095</string>
 						<key>history</key>
 						<array>
-							<string>5C68C91F12E7C44E0037A095</string>
-							<string>5C68C97D12E7D2080037A095</string>
+							<string>5C68CBA912E8EDF50037A095</string>
+							<string>5C68CB9512E8ECC00037A095</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -319,7 +319,6 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>2</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -542,8 +541,8 @@
 		<string>5C68C92912E7C44E0037A095</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>/Users/mpattee/Documents/source/MacMud/MacMud.xcodeproj</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>/Users/mpattee/Documents/source/MacMud/MacMud.xcodeproj</string>
 		<string>5CD9515B1009129800BE590D</string>
 	</array>
 	<key>WindowString</key>

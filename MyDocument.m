@@ -186,8 +186,7 @@
 
 - (void)processIncoming
 {
-	NSString *string = [[NSString alloc] initWithData:_data encoding:NSASCIIStringEncoding];
-	NSString *rawString = [string copy];
+	NSString *rawString = [[NSString alloc] initWithData:_data encoding:NSASCIIStringEncoding];
 	[_data release];
 	_data = nil;
 
@@ -209,7 +208,7 @@
 	
 //	NSLog(string);
 	
-	string = [string stringByReplacingOccurrencesOfRegex:cursorPosition withString:@""];
+	NSString *string = [rawString stringByReplacingOccurrencesOfRegex:cursorPosition withString:@""];
 	string = [string stringByReplacingOccurrencesOfRegex:eraseDisplay withString:@""];
 	string = [string stringByReplacingOccurrencesOfRegex:cursorBackward withString:@""];
 	string = [string stringByReplacingOccurrencesOfRegex:eraseLine withString:@""];
@@ -326,11 +325,13 @@
 
 		NSDictionary *inputDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:attributedString, rawString, nil] forKeys:[NSArray arrayWithObjects:@"attributedString", @"rawString", nil]];
 		[self performSelectorInBackground:@selector(respondInBackgroundToInput:) withObject:inputDictionary];
+		[attributedString release];
 		
 	} else {
 		self.lastInput = string;
-		[outputTextView insertText:string];		
-	}	
+		[outputTextView insertText:string];
+	}
+	[rawString release];
 	
 }
 
@@ -506,7 +507,7 @@
 	unsigned int len = [input length];
 	uint8_t buf[len];
 	(void)memcpy(buf, [data bytes] , len);
-	len = [oStream write:(const uint8_t *)buf maxLength:len];	
+	len = [oStream write:(const uint8_t *)buf maxLength:len];
 }
 
 - (void)attributedString:(NSMutableAttributedString *)aString withCode:(NSInteger)aCode forRange:(NSRange)aRange

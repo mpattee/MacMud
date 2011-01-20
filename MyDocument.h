@@ -9,7 +9,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MyDocument : NSDocument
+@interface MyDocument : NSDocument <NSStreamDelegate>
 {
 	NSTextField *hostAddressTextField;
 	NSTextField *portTextField;
