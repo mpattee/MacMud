@@ -269,20 +269,38 @@
 //
 //	[regExObj release];
 
-/* 
+ 
 
 // TODO: redo ansi coloring
-	regExObj = [[OFRegularExpression alloc] initWithString:ANSIAttribute];
-	match = [regExObj matchInString:string];
-	if (match) {
+	NSArray *matches = [string componentsMatchedByRegex:ANSIAttribute];
+	NSLog(@"array: %@", matches);
+//	regExObj = [[OFRegularExpression alloc] initWithString:ANSIAttribute];
+//	match = [regExObj matchInString:string];
+	if (matches) {
 		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+		string = [string stringByReplacingOccurrencesOfRegex:ANSIAttribute withString:@""];
 //			string = [string stringByReplacingOccurrencesOfString:[match matchString] withString:@""];
 //			match = [match nextMatch];
 		
 		//		if ([string grep:allAttributesOff options:0] == YES) {
 		//			string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[0m", 27] withString:@""];
 		//		}
-		
+
+//		NSArray *alsoHereMatches = [string arrayOfCaptureComponentsMatchedByRegex:@"Also here: (.+)\\."];
+		NSArray *targetMatches = [[attributedString string] componentsMatchedByRegex:@"Also here: (.+)\\." capture:1];
+		if ([targetMatches count]) 
+			{
+			NSArray *targets = [[targetMatches objectAtIndex:0] componentsSeparatedByString:@", "];
+			NSLog(@"targets: %@", targets);
+			for (NSString *target in targets) 
+				{
+				if ([target rangeOfString:@"0;35m"].location != NSNotFound) 
+					{
+					[self attackTarget:[target stringByReplacingOccurrencesOfRegex:ANSIAttribute withString:@""]];
+					continue;
+					}
+				}
+			}
 //			NSString *alsoHere2 = [NSString stringWithFormat:@"Also here: (.+)\\."];
 //			OFRegularExpression *regExObj22 = [[OFRegularExpression alloc] initWithString:alsoHere2];
 //			OFRegularExpressionMatch *match = [regExObj22 matchInString:[attributedString string]];
@@ -309,39 +327,38 @@
 		
 //			OFRegularExpression *regExObj = [[OFRegularExpression alloc] initWithString:ANSIAttribute];
 //			match = [regExObj matchInString:string];
-		NSRange range = [match matchRange];
-		while (match) {
-			range = [match matchRange];
-			range.length = [attributedString length] - range.location;
-			for (int i = 0; i < 3; i++) {
-				NSString * parsedCode = [match subexpressionAtIndex:i];
-				if (![parsedCode isEqualToString:@""] ) {
-					[self attributedString:attributedString withCode:[parsedCode integerValue] forRange:range];
-				}
-			}
-			match = [match nextMatch];
-		}
-		
-		match = [regExObj matchInString:[attributedString string]];
-		while (match) {
-			[attributedString deleteCharactersInRange:[match matchRange]];
-			match = [regExObj matchInString:[attributedString string]];
-		}
-
-		[outputTextView insertText:attributedString];
-		
-		self.lastInput = [attributedString string];
-		[regExObj release];
-		
-		NSDictionary *inputDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:attributedString, rawString, nil] forKeys:[NSArray arrayWithObjects:@"attributedString", @"rawString", nil]];
-		[self performSelectorInBackground:@selector(respondInBackgroundToInput:) withObject:inputDictionary];
-		
-	} else {
-*/
-		self.lastInput = string;
+		NSLog(@"bleh: %@",attributedString);
+//		NSRange range = [match matchRange];
+//		while (match) {
+//			range = [match matchRange];
+//			range.length = [attributedString length] - range.location;
+//			for (int i = 0; i < 3; i++) {
+//				NSString * parsedCode = [match subexpressionAtIndex:i];
+//				if (![parsedCode isEqualToString:@""] ) {
+//					[self attributedString:attributedString withCode:[parsedCode integerValue] forRange:range];
+//				}
+//			}
+//			match = [match nextMatch];
+//		}
+//		
+//		match = [regExObj matchInString:[attributedString string]];
+//		while (match) {
+//			[attributedString deleteCharactersInRange:[match matchRange]];
+//			match = [regExObj matchInString:[attributedString string]];
+//		}
+//
+//		[outputTextView insertText:attributedString];
+//		
+//		self.lastInput = [attributedString string];
+//		[regExObj release];
+//		
+//		NSDictionary *inputDictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:attributedString, rawString, nil] forKeys:[NSArray arrayWithObjects:@"attributedString", @"rawString", nil]];
+//		[self performSelectorInBackground:@selector(respondInBackgroundToInput:) withObject:inputDictionary];
+//		
+//	} else {
+//		self.lastInput = string;
 		[outputTextView insertText:string];		
-//	}
-	
+	}	
 	
 }
 
