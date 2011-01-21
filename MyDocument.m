@@ -291,7 +291,7 @@
 		isInCombat = YES;
 		NSLog(@"Combat Engaged, isInCombat: %d", isInCombat);
 		} 
-	else if ([combatMatch isEqualToString:@"Combat Off"]) 
+	else if ([combatMatch isEqualToString:@"Combat Off"] && isInCombat) 
 		{
 		isInCombat = NO;
 		NSLog(@"Combat Off, isInCombat: %d", isInCombat);
