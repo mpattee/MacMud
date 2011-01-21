@@ -216,11 +216,11 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5C68CBAA12E8EDF50037A095</string>
+						<string>5C68CF9D12E97D1D0037A095</string>
 						<key>history</key>
 						<array>
 							<string>5C68CBA912E8EDF50037A095</string>
-							<string>5C68CB9512E8ECC00037A095</string>
+							<string>5C68CF7312E951E80037A095</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -536,14 +536,14 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5C68CB8112E8E6D50037A095</string>
+		<string>5C68CF9E12E97D1D0037A095</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>5C68C92812E7C44E0037A095</string>
 		<string>5C68C92912E7C44E0037A095</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>/Users/mpattee/Documents/source/MacMud/MacMud.xcodeproj</string>
 		<string>5CD9515B1009129800BE590D</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>2042 998 350 420 0 0 2560 1418 </string>
@@ -920,7 +920,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MyDocument.m</string>
+										<string></string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -929,7 +929,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {781, 212}}</string>
 										<key>RubberWindowFrame</key>
-										<string>25 685 781 470 0 0 1600 1178 </string>
+										<string>54 917 781 470 0 0 2560 1418 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -955,7 +955,7 @@
 								<key>Frame</key>
 								<string>{{0, 217}, {781, 212}}</string>
 								<key>RubberWindowFrame</key>
-								<string>25 685 781 470 0 0 1600 1178 </string>
+								<string>54 917 781 470 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -978,17 +978,17 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>5CD9515E1009129800BE590D</string>
-				<string>5CD9515F1009129800BE590D</string>
+				<string>5C68CBED12E8F06F0037A095</string>
+				<string>5C68CBEE12E8F06F0037A095</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>25 685 781 470 0 0 1600 1178 </string>
+			<string>54 917 781 470 0 0 2560 1418 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

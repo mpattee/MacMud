@@ -197,110 +197,26 @@
 	NSString *cursorBackward = [NSString stringWithFormat:@"%c\\[\\d+D", 27];
 	NSString *eraseLine = [NSString stringWithFormat:@"%c\\[K", 27];
 
-
-//	NSString *testString = [NSString stringWithFormat:@"%c[79D", 27];
-//	NSLog(@"TESTSTRING: %@ REGEXSTRING: %@", testString, cursorBackward);
-//	if ([testString grep:cursorBackward options:0] == YES) {
-//		NSLog(@"FOUND FOUND FOUND");
-//	} else {
-//		NSLog(@"NOT NOT NOT");
-//	}
-	
-//	NSLog(string);
-	
 	NSString *string = [rawString stringByReplacingOccurrencesOfRegex:cursorPosition withString:@""];
+	// TODO: handle others than 1,1
 	string = [string stringByReplacingOccurrencesOfRegex:eraseDisplay withString:@""];
+	// TODO: clear display
 	string = [string stringByReplacingOccurrencesOfRegex:cursorBackward withString:@""];
+	// TODO: Move other distances backward than 79
 	string = [string stringByReplacingOccurrencesOfRegex:eraseLine withString:@""];
+	// TODO: Erase line from display
 
-//	OFRegularExpression *regExObj = [[OFRegularExpression alloc] initWithString:cursorPosition];
-//	OFRegularExpressionMatch *match = [regExObj matchInString:string];
-//	while (match) {
-//		string = [string stringByReplacingOccurrencesOfString:[match matchString] withString:@""];
-//		match = [match nextMatch];
-////		string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[1;1H", 27] withString:@""];
-//		// TODO: handle others than 1,1
-//	}
-	
-//	[regExObj release];
-//	regExObj = [[OFRegularExpression alloc] initWithString:eraseDisplay];
-//	match = [regExObj matchInString:string];
-//
-//	while (match) {
-//		string = [string stringByReplacingOccurrencesOfString:[match matchString] withString:@""];
-//		match = [match nextMatch];
-////		string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[2J", 27] withString:@""];
-//		// TODO: clear display
-//	}
-//	
-//	[regExObj release];
-//	regExObj = [[OFRegularExpression alloc] initWithString:cursorBackward];
-//	match = [regExObj matchInString:string];
-//
-//	while (match) {
-//		string = [string stringByReplacingOccurrencesOfString:[match matchString] withString:@""];
-//		match = [match nextMatch];
-////		string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[79D", 27] withString:@""];
-////		string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[1D", 27] withString:@""];
-////		NSLog(@"CURSOR BACKWARD");
-//		// TODO: move other distances backward than 79
-//	}
-//	
-//	[regExObj release];
-//	regExObj = [[OFRegularExpression alloc] initWithString:eraseLine];
-//	match = [regExObj matchInString:string];
-//	
-//	while (match) {
-//		string = [string stringByReplacingOccurrencesOfString:[match matchString] withString:@""];
-//		match = [match nextMatch];
-////		string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[K", 27] withString:@""];
-//		// TODO: erase line from display
-//	}
-//	
-//	//				NSString *string = [[NSString alloc] initWithBytes:[_data bytes] length:[_data length] encoding:NSUTF8StringEncoding];
-//	//	NSLog(@"string:%@",string);
-//	//	NSRange range = [string rangeOfString:esc];
-//	//	if (range.length) {
-//	//		NSArray *array = [string componentsSeparatedByString:esc];
-//	//		NSLog(@"array:%@", array);
-//	//	}
-//	
-//
-//	[regExObj release];
-
- 
-
-// TODO: redo ansi coloring
 	NSArray *matches = [string componentsMatchedByRegex:ANSIAttribute];
 	NSArray *matchComponents = [string arrayOfCaptureComponentsMatchedByRegex:ANSIAttribute];
 //	NSLog(@"array: %@", matches);
-//	regExObj = [[OFRegularExpression alloc] initWithString:ANSIAttribute];
-//	match = [regExObj matchInString:string];
 	if (matches) {
 		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
 		string = [string stringByReplacingOccurrencesOfRegex:ANSIAttribute withString:@""];
-//			string = [string stringByReplacingOccurrencesOfString:[match matchString] withString:@""];
-//			match = [match nextMatch];
 		
 		//		if ([string grep:allAttributesOff options:0] == YES) {
 		//			string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%c[0m", 27] withString:@""];
 		//		}
 
-//		NSArray *alsoHereMatches = [string arrayOfCaptureComponentsMatchedByRegex:@"Also here: (.+)\\."];
-		NSArray *targetMatches = [[attributedString string] componentsMatchedByRegex:@"Also here: (.+)\\." capture:1];
-		if ([targetMatches count]) 
-			{
-			NSArray *targets = [[targetMatches objectAtIndex:0] componentsSeparatedByString:@", "];
-//			NSLog(@"targets: %@", targets);
-			for (NSString *target in targets) 
-				{
-				if ([target rangeOfString:@"0;35m"].location != NSNotFound) 
-					{
-					[self attackTarget:[target stringByReplacingOccurrencesOfRegex:ANSIAttribute withString:@""]];
-					continue;
-					}
-				}
-			}
 //				// 0;35m == attackable magenta
 //				// 0;36m == neutral cyan
 //				// 0;37m == good alligned white
@@ -339,53 +255,51 @@
 {
 	BOOL shouldCheckForTargets = NO;
 	NSAutoreleasePool *backgroundPool = [[NSAutoreleasePool alloc] init];
+
 	NSAttributedString *attributedString = [anInputDictionary valueForKey:@"attributedString"];
 	NSString *rawString = [anInputDictionary valueForKey:@"rawString"];
+
 	NSString *string = [attributedString string];
+
 //	OFRegularExpression *regExObj = nil;
 //	OFRegularExpressionMatch *match = nil;
-//	if (!isInCombat) {
-//		NSString *alsoHere = [NSString stringWithFormat:@"Also here: (.+)\\."];
-//		regExObj = [[OFRegularExpression alloc] initWithString:alsoHere];
-//		match = [regExObj matchInString:[attributedString string]];
-//		//		NSLog(@"MATCH: %@", match);
-//		if (match) {
-//			//			NSLog(@"COUNT: %d", [regExObj2 subexpressionCount]);
-//			NSString *targetList = [match subexpressionAtIndex:0];
-//			NSArray *targets = [targetList componentsSeparatedByString:@", "];
-//			//			NSLog(@"TARGETS: %@", targets);
-//			for (NSString *target in targets) {
-//				if (islower([target characterAtIndex:0])) {
-//					target = [target stringByReplacingOccurrencesOfString:@"." withString:@""];
-//					[self performSelectorOnMainThread:@selector(attackTarget:) withObject:target waitUntilDone:NO];
-//					break;
-//				}
-//			}
-//		}
-//	}	
-//
-//	NSString *combat = [NSString stringWithFormat:@"Combat Off|Combat Engaged"];
-//	//		NSString *combatOn = [NSString stringWithFormat:@"Combat Engaged"];
-//	
-//	[regExObj release];
-//	regExObj = [[OFRegularExpression alloc] initWithString:combat];
-//	match = [regExObj matchInString:[attributedString string]];
-//	if (match) {
-//		while (match) {
-//			//				NSLog(@"combat match: %@", [match matchString]);
-//			if ([[match matchString] isEqualToString:@"Combat Engaged"]) {
-//				isInCombat = YES;
-//				//					NSLog(@"Combat Engaged, isInCombat: %d", isInCombat);
-//			} else if ([[match matchString] isEqualToString:@"Combat Off"]) {
-//				isInCombat = NO;
-//				//					NSLog(@"Combat Off, isInCombat: %d", isInCombat);
-//			}
-//			match = [match nextMatch];
-//		}
-//		shouldCheckForTargets = YES;
-////		[self checkForTargets:nil];
+	if (!isInCombat) {
+		NSArray *targetMatches = [[attributedString string] componentsMatchedByRegex:@"Also here: (.+)\\." capture:1];
+		if ([targetMatches count]) 
+			{
+			NSArray *targets = [[targetMatches objectAtIndex:0] componentsSeparatedByString:@", "];
+			for (NSString *target in targets) 
+				{
+				NSLog(@"TARGET: %@", target);
+				NSString *ANSIAttribute = [NSString stringWithFormat:@"%c\\[(\\d+);?(\\d*);?(\\d*)m", 27];				
+				NSString *cleanedTarget = [target stringByReplacingOccurrencesOfRegex:ANSIAttribute withString:@""];
+				if (islower([target characterAtIndex:0])) 
+					{
+					NSLog(@"BLAHLFKJSDFLKJ");
+					[self performSelectorOnMainThread:@selector(attackTarget:) withObject:cleanedTarget waitUntilDone:NO];
+//					[self attackTarget:[target stringByReplacingOccurrencesOfRegex:ANSIAttribute withString:@""]];
+					break;
+					}
+				}
+			}
+		}
+
+	NSString *combat = [NSString stringWithFormat:@"Combat Off|Combat Engaged"];
+	NSString *combatMatch = [string stringByMatching:combat];
+	if ([combatMatch isEqualToString:@"Combat Engaged"]) 
+		{
+		isInCombat = YES;
+		NSLog(@"Combat Engaged, isInCombat: %d", isInCombat);
+		} 
+	else if ([combatMatch isEqualToString:@"Combat Off"]) 
+		{
+		isInCombat = NO;
+		NSLog(@"Combat Off, isInCombat: %d", isInCombat);
+		shouldCheckForTargets = YES;
+		}
+//		[self checkForTargets:nil];
 //	}
-//	
+	
 //	
 //	
 //	[regExObj release];
@@ -410,6 +324,12 @@
 //			}
 //		}
 //	}
+	
+	NSString *somethingCameIn = [[attributedString string] stringByMatching:@"into the room from"];
+	if (somethingCameIn) 
+		{
+		shouldCheckForTargets = YES;
+		}
 	
 //	NSString *intoTheRoom = [NSString stringWithFormat:@"into the room from"];
 //	[regExObj release];
@@ -477,8 +397,8 @@
 //	}
 //
 //	
-//	if (shouldCheckForTargets)
-//		[self checkForTargets:nil];
+	if (shouldCheckForTargets)
+		[self checkForTargets:nil];
 //	
 	[backgroundPool release];
 	
@@ -621,7 +541,7 @@
 - (IBAction)getAllItems:(id)sender
 {
 	[self sendCommand:@""];
-	NSString *youNotice = [NSString stringWithFormat:@"You notice (.+) here\\."];
+//	NSString *youNotice = [NSString stringWithFormat:@"You notice (.+) here\\."];
 //	OFRegularExpression *regExObj = [[OFRegularExpression alloc] initWithString:youNotice];
 //	OFRegularExpressionMatch *match = [regExObj matchInString:lastInput];
 //	//		NSLog(@"MATCH: %@", match);
@@ -641,7 +561,7 @@
 - (IBAction)equipAllItems:(id)sender
 {	
 	[self sendCommand:@"i"];
-	NSString *youAreCarrying = [NSString stringWithFormat:@"You are carrying (.+) keys."];
+//	NSString *youAreCarrying = [NSString stringWithFormat:@"You are carrying (.+) keys."];
 //	OFRegularExpression *regExObj = [[OFRegularExpression alloc] initWithString:youAreCarrying];
 //	OFRegularExpressionMatch *match = [regExObj matchInString:lastInput];
 //	NSLog(@"last input: %@", lastInput);
